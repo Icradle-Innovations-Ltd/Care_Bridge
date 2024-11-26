@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN_PANEL</title>
+    <!-- <link rel="stylesheet" href="../style/admin.css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+body {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    margin: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.container {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.forms-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.form {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 10px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    backdrop-filter: blur(4px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
+}
+
+.form-header {
+    margin-bottom: 30px;
+    color: #1a73e8;
+}
+
+.form-header i {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.form-header h2 {
+    margin: 0;
+    color: #333;
+    font-weight: 500;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 18px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submit-btn:hover {
+    background: #1557b0;
+    transform: translateY(-2px);
+}
+
+nav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 30px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#index {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#index h1 {
+    margin: 0;
+    color: #1a73e8;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+#index i {
+    color: #1a73e8;
+    font-size: 24px;
+}
+
+.nav-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-title h1 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+#userButton {
+    background: #1a73e8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+#userButton:hover {
+    background: #1557b0;
+    transform: translateY(-2px);
+}
+
+#spinner:not([hidden]) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+}
+
+#spinner::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #1a73e8;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .forms-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form {
+        width: 90%;
+        margin: 10px 0;
+    }
+
+    nav {
+        padding: 10px 15px;
+    }
+
+    #index h1, .nav-title h1 {
+        font-size: 18px;
+    }
+
+    #userButton {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .form {
+        padding: 20px;
+    }
+
+    .form-header i {
+        font-size: 30px;
+    }
+
+    .form-header h2 {
+        font-size: 20px;
+    }
+
+    .input-group input {
+        padding: 12px 12px 12px 40px;
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+    <nav class="mobile-nav">
+        <div id="index">
+            <i class="material-icons">favorite</i>
+            <h1>CareBridge</h1>
+        </div>
+        <div class="nav-title">
+            <i class="material-icons">admin_panel_settings</i>
+            <h1>Admin Panel</h1>
+        </div>
+        <div>
+            <button id="userButton" class="user-btn">
+                <i class="material-icons">person</i>
+                Login as User
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="forms-wrapper">
+            <div class="form adminLogin">
+                <div class="form-header">
+                    <i class="material-icons">admin_panel_settings</i>
+                    <h2>Login as ADMIN</h2>
+                </div>
+                <form action="">
+                    <div class="input-group">
+                        <i class="material-icons">email</i>
+                        <input type="email" id="adminLoginEmail" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="material-icons">lock</i>
+                        <input type="password" id="adminLoginPassword" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="material-icons">login</i>
+                        Login
+                    </button>
+                </form>
+            </div>
+
+            <div class="form admin">
+                <div class="form-header">
+                    <i class="material-icons">person_add</i>
+                    <h2>REGISTER as ADMIN</h2>
+                </div>
+                <form action="" method="">
+                    <div class="input-group">
+                        <i class="material-icons">person</i>
+                        <input type="text" id="adminRegName" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="material-icons">email</i>
+                        <input type="email" id="adminRegEmail" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="material-icons">lock</i>
+                        <input type="password" id="adminRegPassword" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="material-icons">image</i>
+                        <input type="text" id="adminRegImage" name="image" placeholder="Enter image URL" required>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="material-icons">person_add</i>
+                        Signup
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div hidden id="spinner" class="loader"></div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN_Page</title>
+    <!-- <link rel="stylesheet" href="../style/signin.css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<style>
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    background-color: #f8fcff;
+    min-height: 100vh;
+    width: 100%;
+}
+
+nav {
+    background: linear-gradient(135deg, #0066cc, #4285f4);
+    padding: clamp(10px, 2vw, 15px);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+nav h1 {
+    color: white;
+    margin-left: clamp(10px, 2vw, 20px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: clamp(18px, 3vw, 24px);
+}
+
+nav h1::before {
+    content: '';
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.5 14H9v-2.5H6.5V13h2.5v-2.5h2v2.5H13V13h-2.5v2.5zM19 19H5V5h14v14z"/></svg>');
+    width: clamp(20px, 3vw, 24px);
+    height: clamp(20px, 3vw, 24px);
+    display: inline-block;
+}
+
+#index h1 {
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 15px);
+    padding: clamp(8px, 1.5vw, 10px);
+    flex-wrap: wrap;
+}
+
+button, #signup, #admin, #home {
+    padding: clamp(8px, 1.5vw, 12px) clamp(16px, 2vw, 24px);
+    border: none;
+    border-radius: 30px;
+    background-color: #fff;
+    color: #4285f4;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: clamp(13px, 1.5vw, 15px);
+    min-width: clamp(100px, 15vw, 130px);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+button:hover, #signup:hover, #admin:hover, #home:hover {
+    background-color: #4285f4;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(66,133,244,0.3);
+}
+
+.container {
+    padding: clamp(15px, 2vw, 20px);
+    margin-top: clamp(20px, 4vw, 40px);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form {
+    width: min(90%, 600px);
+    background-color: white;
+    border-radius: 20px;
+    padding: clamp(20px, 3vw, 30px);
+    margin: 0 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.form h2 {
+    color: #4285f4;
+    font-size: clamp(18px, 2.5vw, 20px);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.form h2::before {
+    content: '';
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234285f4"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.5 14H9v-2.5H6.5V13h2.5v-2.5h2v2.5H13V13h-2.5v2.5zM19 19H5V5h14v14z"/></svg>');
+    width: clamp(24px, 3vw, 28px);
+    height: clamp(24px, 3vw, 28px);
+    display: inline-block;
+}
+
+.form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    color: #5f6368;
+    font-size: clamp(14px, 1.5vw, 15px);
+    font-weight: 500;
+}
+
+.form input[type="text"],
+.form input[type="password"],
+.form input[type="email"] {
+    width: 100%;
+    padding: clamp(10px, 1.5vw, 14px);
+    border: 2px solid #e8eaed;
+    border-radius: 30px;
+    font-size: clamp(14px, 1.5vw, 16px);
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form input:focus {
+    border-color: #4285f4;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66,133,244,0.1);
+}
+
+#spinner:not([hidden]) {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255,255,255,0.9);
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+#spinner::after {
+    content: "";
+    width: clamp(40px, 6vw, 60px);
+    height: clamp(40px, 6vw, 60px);
+    border: 3px solid #e8eaed;
+    border-top: 3px solid #4285f4;
+    border-radius: 50%;
+    will-change: transform;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+h1 {
+    font-size: clamp(20px, 3vw, 24px);
+    padding: 0 clamp(10px, 2vw, 20px);
+}
+
+p {
+    font-size: clamp(14px, 1.5vw, 16px);
+    padding: 0 clamp(10px, 2vw, 20px);
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .material-icons {
+        font-size: clamp(18px, 2.5vw, 24px);
+    }
+}
+</style>
+</head>
+
+<body>
+    <nav>
+        <div id="index">
+            <h1><i class="material-icons">favorite</i> CareBridge</h1>
+        </div>
+
+        <div id="buttons">
+            <button id="home"><i class="material-icons">home</i> Home</button>
+            <button id="admin"><i class="material-icons">admin_panel_settings</i> Login as ADMIN</button>
+            <button id="signup"><i class="material-icons">person_add</i> Create an account</button>
+        </div>
+    </nav>
+
+    <h1><i class="material-icons">medical_services</i> Welcome to Doctor's Appointment Booking</h1>
+
+    <div class="container">
+        <div class="form patient">
+            <h2><i class="material-icons">person</i> Login as Patient</h2>
+            <form action="">
+                <label for="patientEmail">Email</label>
+                <input type="email" id="patientEmail" name="email" required placeholder="Enter your email">
+                <label for="patientPassword">Password</label>
+                <input type="password" id="patientPassword" name="password" required placeholder="Enter your password">
+                <button type="submit"><i class="material-icons">login</i> Login</button>
+            </form>
+        </div>
+        <div class="form doctor">
+            <h2><i class="material-icons">local_hospital</i> Login as Doctor</h2>
+            <form action="">
+                <label for="doctorEmail">Email</label>
+                <input type="email" id="doctorEmail" name="email" required placeholder="Enter your email">
+                <label for="doctorPassword">Password</label>
+                <input type="password" id="doctorPassword" name="password" required placeholder="Enter your password">
+                <button type="submit"><i class="material-icons">login</i> Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div hidden id="spinner"></div>
+</body>
+
+<script src="../js/signin.js"></script>
+</html>
