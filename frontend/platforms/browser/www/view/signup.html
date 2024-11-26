@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGNUP</title>
+    <!-- <link rel="stylesheet" href="../style/signup.css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    :root {
+    --primary-color: #00796B;
+    --secondary-color: #4DB6AC;
+    --accent-color: #FF5252;
+    --background-color: #E0F2F1;
+    --text-color: #263238;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    min-width: 320px;
+}
+
+nav {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: clamp(0.8rem, 2vw, 1.2rem);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#index h1 {
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#index h1::before {
+    content: '';
+    background: url('https://fonts.gstatic.com/s/i/materialicons/local_hospital/v1/24px.svg') no-repeat;
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+}
+
+#buttons {
+    display: flex;
+    gap: clamp(0.5rem, 2vw, 1rem);
+}
+
+#buttons button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: clamp(0.5rem, 1.5vw, 0.7rem) clamp(0.8rem, 2vw, 1.2rem);
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    backdrop-filter: blur(5px);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+#signin:hover, #home:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+.welcome-section {
+    text-align: center;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 2vw, 1.5rem);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-section::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: var(--background-color);
+    clip-path: ellipse(60% 60% at 50% 100%);
+}
+
+.welcome-section h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.role-buttons {
+    padding: clamp(1.5rem, 3vw, 2rem) clamp(1rem, 2vw, 1.5rem);
+    text-align: center;
+}
+
+.role-buttons h2 {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+}
+
+.role-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(1rem, 2vw, 1.2rem);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 2vw, 1.5rem);
+}
+
+.role-btn {
+    background-color: white;
+    border: none;
+    padding: clamp(1rem, 2vw, 1.2rem);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.role-btn i {
+    font-size: clamp(20px, 4vw, 24px);
+    color: var(--primary-color);
+}
+
+.role-btn:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    transform: translateY(-3px);
+}
+
+.role-btn:hover i {
+    color: white;
+}
+
+.container {
+    padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.form {
+    background-color: white;
+    padding: clamp(1.5rem, 3vw, 2rem) clamp(1rem, 2vw, 1.5rem);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    margin: 0 auto 2rem;
+    max-width: min(90%, 400px);
+    display: none;
+}
+
+.form h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 1.5vw, 1rem);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    background-color: #F5F5F5;
+    padding: clamp(0.8rem, 1.5vw, 1rem);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+    background-color: #E8F5E9;
+    box-shadow: 0 0 0 2px var(--secondary-color);
+}
+
+.input-group i {
+    color: var(--primary-color);
+    font-size: clamp(18px, 3vw, 20px);
+}
+
+input, select {
+    border: none;
+    background: none;
+    width: 100%;
+    padding: clamp(0.4rem, 1vw, 0.5rem);
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: clamp(1rem, 2vw, 1.2rem);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,121,107,0.2);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,121,107,0.3);
+}
+
+#spinner:not([hidden]) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(5px);
+}
+
+#spinner::after {
+    content: "";
+    width: clamp(40px, 8vw, 60px);
+    height: clamp(40px, 8vw, 60px);
+    border: 3px solid var(--secondary-color);
+    border-top: 3px solid var(--primary-color);
+    border-radius: 100%;
+    will-change: transform;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    #buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .welcome-section p {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+    
+    .input-group {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .role-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+</style>
+</head>
+<body>
+    <nav>
+        <div id="index">
+            <h1><i class="material-icons">local_hospital</i> CareBridge</h1>
+        </div>
+        <div id="buttons">
+            <button id="home"><i class="material-icons">home</i> Home</button>
+            <button id="signin"><i class="material-icons">login</i> Sign In</button>
+        </div>
+    </nav>
+
+    <div class="welcome-section">
+        <h1><i class="material-icons">health_and_safety</i> Welcome to CareBridge</h1>
+        <p>Your Health, Our Priority</p>
+    </div>
+
+    <div class="role-buttons">
+        <h2>Choose Your Role</h2>
+        <div class="role-options">
+            <button onclick="showDoctorForm()" class="role-btn">
+                <i class="material-icons">medical_services</i>
+                <span>I'm a Doctor</span>
+            </button>
+            <button onclick="showPatientForm()" class="role-btn">
+                <i class="material-icons">personal_injury</i>
+                <span>I'm a Patient</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form" id="doctorForm">
+            <h2><i class="material-icons">medication</i> Doctor Signup</h2>
+            <form action="" method="">
+                <div class="input-group">
+                    <i class="material-icons">person</i>
+                    <input type="text" id="doctorName" name="name" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <i class="material-icons">email</i>
+                    <input type="email" id="doctorEmail" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="material-icons">lock</i>
+                    <input type="password" id="doctorPassword" name="password" placeholder="Password" required>
+                </div>
+                <div class="input-group">
+                    <i class="material-icons">local_hospital</i>
+                    <select id="doctorSpecialisation" name="specialisation" required>
+                        <option value="" disabled selected>Select Specialisation</option>
+                        <option value="heart">Cardiology</option>
+                        <option value="kidney">Nephrology</option>
+                        <option value="general">General Medicine</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <i class="material-icons">videocam</i>
+                    <select id="doctorVideocall" name="videocall" required>
+                        <option value="" disabled selected>Video Call Available?</option>
+                        <option value="YES">Yes</option>
+                        <option value="NO">No</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <i class="material-icons">image</i>
+                    <input type="text" id="doctorImage" name="image" placeholder="Profile Image URL" required>
+                </div>
+                <button type="submit" class="submit-btn"><i class="material-icons">how_to_reg</i> Join as Doctor</button>
+            </form>
+        </div>
+
+        <div class="form" id="patientForm">
+            <h2><i class="material-icons">personal_injury</i> Patient Signup</h2>
+            <form action="" method="">
+                <div class="input-group">
+                    <i class="material-icons">person</i>
+                    <input type="text" id="patientName" name="name" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <i class="material-icons">email</i>
+                    <input type="email" id="patientEmail" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="material-icons">lock</i>
+                    <input type="password" id="patientPassword" name="password" placeholder="Password" required>
+                </div>
+                <div class="input-group">
+                    <i class="material-icons">image</i>
+                    <input type="text" id="patientImage" name="image" placeholder="Profile Image URL" required>
+                </div>
+                <button type="submit" class="submit-btn"><i class="material-icons">how_to_reg</i> Join as Patient</button>
+            </form>
+        </div>
+    </div>
+
+    <div hidden id="spinner"></div>
+
+</body>
+</html>
+
+<script src="../js/signup.js"></script>
